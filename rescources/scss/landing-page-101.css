@@ -64,6 +64,10 @@ body, html {
   margin: auto;
 }
 
+.loginmain .login__image {
+  display: none;
+}
+
 .loginmain .login__image_item {
   width: 100%;
   margin-top: 2.4em;
@@ -186,6 +190,9 @@ body, html {
 @media screen and (min-width: 64em) {
   .top_media_query_indicator {
     background-color: green;
+  }
+  .loginmain .login__image {
+    display: block;
   }
   .pure-u-1 .login__image_item {
     margin-top: 7.4em;

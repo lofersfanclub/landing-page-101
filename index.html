@@ -12,23 +12,109 @@
 <body>
     <div class="top_media_query_indicator pure-g"></div>
     <div class="loginmain pure-g container">
-        <div class="login__image pure-u-1 pure-u-md-1-2">
+        <div class="login__image pure-u-1 pure-u-lg-1-2">
             <img class="login__image_item" src="rescources/images/loggin-hero.jpg" alt="hero-image">
         </div>
-        <div class="pure-u-1 pure-u-md-1-2">
+        <div class="pure-u-1 pure-u-lg-1-2">
             <div class="card shadow-md">
             <div class="card__logo"></div>
             <div class="card__title">Welcome</div>
             <div class="card__derc">Enter your credentials to login</div>
                 <form class="form" action="">
-                    <input class="form__email textfield input" type="form__email" placeholder="Email"><br>
-                    <input class="form__password textfield input" type="form__password" placeholder="Password"><br>
-                    <input class="form__submit button input" type="form__submit" value="Login">
+                    <input id="email" class="form__email textfield input" type="form__email" placeholder="Email"><br>
+                    <input id="password" class="form__password textfield input" type="form__password" placeholder="Password"><br>
+                    <input id="login" class="form__submit button input" type="form__submit" value="Login">
                 </form>
             <div class="card__sign_up"><a>Sign up</a></div>
             <div class="card__forgot_password"><a>Forgot password?</a></div>
             </div>
         </div>
     </div>
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+
+        <!-- Initialize Firebase -->
+      <script>
+          var firebaseConfig = {
+                apiKey: "AIzaSyDsuZLqzHQNTeHIJS-27sVqLSuTV_t0Z3c",
+                authDomain: "landing-page-101.firebaseapp.com",
+                databaseURL: "https://project-id.firebaseio.com",
+                projectId: "landing-page-101",
+                storageBucket: "landing-page-101.appspot.com",
+                messagingSenderId: "492326866669",
+                appId: "1:492326866669:web:05e77a180b785f236ec6e4",
+          };
+
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+
+          var email = document.getElementById('email').value;
+          var password = document.getElementById('password').value;
+          var loginButton = document.getElementById('login');
+
+          loginButton.onclick = function(){
+
+            firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+            });
+
+            };
+
+            var user = firebase.auth().currentUser;
+
+            if (user) {
+            // User is signed in.
+            console.log("out");
+            
+            } else {
+            // No user is signed in.
+            console.log("in");
+            }
+
+ 
+
+          firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+          // User is signed in.
+          var displayName = user.displayName;
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+          var isAnonymous = user.isAnonymous;
+          var uid = user.uid;
+          var providerData = user.providerData;
+          // ...
+          console.log('user ' + email);
+          
+          } else {
+          // User is signed out.
+          // ...
+          console.log('no user');
+          }
+          });
+
+          firebase.auth().signOut().then(function() {
+          // Sign-out successful.
+          console.log("sign out");
+          
+          }).catch(function(error) {
+          // An error happened.
+          });
+
+
+
+      </script>
+
 </body>
 </html>

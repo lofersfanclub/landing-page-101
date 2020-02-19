@@ -76,6 +76,10 @@ body, html{
 //hero
 .loginmain{
 
+    .login__image{
+        display: none;
+    }
+
 
     .login__image_item{
         width: 100%;
@@ -205,6 +209,11 @@ body, html{
     .top_media_query_indicator {
         background-color: green;
     }
+
+    .loginmain .login__image{
+        display: block;
+    }
+
     .pure-u-1 .login__image_item {
         margin-top: 7.4em;
         margin-left: 2em;
