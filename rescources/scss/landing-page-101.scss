@@ -1,0 +1,83 @@
+/* VARIBLES */
+
+// Theme Colors
+$primary-color: #fea3aa;
+
+
+//Button Colors
+
+
+//SCSS
+
+*{
+    margin: 0;
+    padding: 0;
+    background-color: $primary-color;
+}
+
+.container {
+    max-width: 1450px;
+    margin: auto;
+}
+
+//hero
+.loginmain{
+
+
+    .login__image_item{
+        width: 100%;
+        margin-top: 2.4em;
+    }
+}
+
+
+.login__image_item{
+   width: 100%;
+   margin-top: 2.4rem;
+}
+
+.top_media_query_indicator{
+    height: 5px;
+    background-color: red;
+}
+
+//sm
+@media screen and (min-width: 35.5em) {
+    .top_media_query_indicator {
+        background-color: blue;
+    }
+}
+
+//md
+@media screen and (min-width: 48em){
+
+    .top_media_query_indicator {
+        background-color: yellow;
+    }
+}
+
+//lg
+@media screen and (min-width: 64em){
+
+    .top_media_query_indicator {
+        background-color: green;
+    }
+    .pure-u-1 .login__image_item {
+        margin-top: 7.4em;
+        margin-left: 2em;
+        max-width: 800px;
+        float: right;
+    }
+
+    .loginmain {
+        margin-top: 100px;
+    }
+
+}
+
+//xl
+@media screen and (min-width: 80em){
+    .top_media_query_indicator {
+        background-color: purple;
+    }
+}
