@@ -10,20 +10,30 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="rescources/scss/landing-page-101.css">
 <body>
-    <div class="top_media_query_indicator pure-g"></div>
+    <div class="top_media_query_indicator pure-g">
+    </div>
+
+    <!-- nav -->
+    <div id="nav" class="nav">
+        <ul class="nav__list">
+            <li id="login_indicator" class="list__item">user</li>
+            <li class="list__item"><button id="signout">sign out</button></li>
+        </ul>
+    </div>
+    <!-- main content -->
     <div class="loginmain pure-g container">
         <div class="login__image pure-u-1 pure-u-lg-1-2">
             <img class="login__image_item" src="rescources/images/loggin-hero.jpg" alt="hero-image">
         </div>
         <div class="pure-u-1 pure-u-lg-1-2">
-            <div class="card shadow-md">
+            <div id="login_card" class="card shadow-md">
             <div class="card__logo"></div>
             <div class="card__title">Welcome</div>
             <div class="card__derc">Enter your credentials to login</div>
                 <form class="form" action="">
                     <input id="email" class="form__email textfield input" type="form__email" placeholder="Email"><br>
-                    <input id="password" class="form__password textfield input" type="form__password" placeholder="Password"><br>
-                    <input id="login" class="form__submit button input" type="form__submit" value="Login">
+                    <input id="password" class="form__password textfield input" type="password" placeholder="Password"><br>
+                    <input id="login" class="form__submit button input" type="button" value="Login">
                 </form>
             <div class="card__sign_up"><a>Sign up</a></div>
             <div class="card__forgot_password"><a>Forgot password?</a></div>
@@ -42,8 +52,8 @@
   <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
 
         <!-- Initialize Firebase -->
-      <script>
-          var firebaseConfig = {
+   <script>
+             var firebaseConfig = {
                 apiKey: "AIzaSyDsuZLqzHQNTeHIJS-27sVqLSuTV_t0Z3c",
                 authDomain: "landing-page-101.firebaseapp.com",
                 databaseURL: "https://project-id.firebaseio.com",
@@ -56,65 +66,89 @@
           // Initialize Firebase
           firebase.initializeApp(firebaseConfig);
 
-          var email = document.getElementById('email').value;
-          var password = document.getElementById('password').value;
-          var loginButton = document.getElementById('login');
+          function initApp() {
+            // Listening for auth state changes.
+            // [START authstatelistener]
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    // User is signed in.
+                    var email = user.email;
+                    console.log(user.email);
+                    document.getElementById('login_indicator').textContent = user.email;
+                    document.getElementById('login_card').style.display = 'none';
+                } else {
+                    // User is signed out.
+                    // [START_EXCLUDE]
+                    document.getElementById('nav').style.display = 'none';
+                    document.getElementById('login_card').style.display = 'block';
+                    // [END_EXCLUDE]
+                }
+                // [START_EXCLUDE silent]
 
-          loginButton.onclick = function(){
-
-            firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ...
+                // [END_EXCLUDE]
             });
+        }
 
-            };
 
-            var user = firebase.auth().currentUser;
-
-            if (user) {
-            // User is signed in.
-            console.log("in");
-            
+        /* Handles the sign in button press.*/
+        function toggleSignIn() {
+            if (firebase.auth().currentUser) {
+                // [START signout]
+                firebase.auth().signOut();
+                // [END signout]
             } else {
-            // No user is signed in.
-            console.log("out");
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+                if (email.length < 4) {
+                    alert('Please enter an email address.');
+                    return;
+                }
+                if (password.length < 4) {
+                    alert('Please enter a password.');
+                    return;
+                }
+                // Sign in with email and pass.
+                // [START authwithemail]
+                firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // [START_EXCLUDE]
+                    if (errorCode === 'auth/wrong-password') {
+                        alert('Wrong password.');
+                    } else {
+                        alert(errorMessage);
+                    }
+                    console.log(error);
+                    // [END_EXCLUDE]
+                });
+                // [END authwithemail]
             }
+            document.getElementById('nav').style.display = 'block';
+        }
 
- 
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var loginButton = document.getElementById('login');
+        var signOutButton = document.getElementById('signout');
 
-          firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-          // User is signed in.
-          var displayName = user.displayName;
-          var email = user.email;
-          var emailVerified = user.emailVerified;
-          var photoURL = user.photoURL;
-          var isAnonymous = user.isAnonymous;
-          var uid = user.uid;
-          var providerData = user.providerData;
-          // ...
-          console.log('user ' + email);
+        signOutButton.onclick = function(){
+            firebase.auth().signOut();
+            initApp();
+        };
+
+        loginButton.onclick = function(){
+            toggleSignIn()
+        };
+
+        window.onload = function () {
+            initApp();
+        };
+   </script>
+    
           
-          } else {
-          // User is signed out.
-          // ...
-          console.log('no user');
-          }
-          });
 
-        //   firebase.auth().signOut().then(function() {
-        //   // Sign-out successful.
-        //   console.log("sign out");
-          
-        //   }).catch(function(error) {
-        //   // An error happened.
-        //   });
-
-
-
-      </script>
+     
 
 </body>
 </html>
