@@ -91,45 +91,87 @@ body, html{
     padding: 2em;
     margin: 10em auto;
     text-align: center;
+    color: $sublimentary-color;
+    font-size: 0.9em;
 
-    &__title{
-        font-size: 2em;
-    }
-    &__derc{
-        font-size: 0.8em;
-        color: $light-text;
-    }
-}
-
-.form{
-    margin-top: 1.4em;
-    input {
-        line-height: normal;
+    &__logo{
+        margin: 0.6em auto;
+        background-image: url('/rescources/images/logo@2x.png');
+        background-size: auto 50px;
+        background-repeat: no-repeat;
+        background-position: center;
         width: 80%;
         height: 50px;
-        margin-top: 0.5em;
-        border-radius: 1.5em;
-        border: none;
+    }
 
+    &__title{
+        margin-top: 0.6em;
+        font-size: 3em;
+        font-weight: 700;
+        color: $sublimentary-color;
     }
-    .textfield{
-        background-color: $light-gray;
+    &__derc{
+        color: $light-text;
     }
-    &__submit{
-        text-align: center;
-        font-weight: 500;
 
+    .form {
+        margin-top: 1.8em;
+
+        .input {
+            line-height: normal;
+            width: 80%;
+            margin-top: 0.8em;
+            border-radius: 2em;
+            border: none;
+            padding: 1.4em;
+            font-size: 0.9em;
+        }
+
+        .textfield {
+            background-color: $light-gray;
+        }
+
+        &__submit {
+            text-align: center;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: $light-gray;
+            color: $sublimentary-color;
+        }
+
+        .button {
+            background-color: $sublimentary-color;
+            color: #fff;
+            border: solid 1px $sublimentary-color;
+        }
     }
-    .button{
-        background-color: $sublimentary-color;
-        color: #fff;
-    }
+        &__sign_up {
+            font-weight: 500;
+            margin-top: 3em;
+            font-size: 0.8em;
+            font-weight: 700;
+        }
+
+        &__sign_up:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        &__forgot_password {
+            color: $light-text;
+            margin-top: 0.8em;
+            font-size: 0.8em;
+        }
+
+        &__forgot_password:hover {
+            color: $sublimentary-color;
+            text-decoration: underline;
+            cursor: pointer;
+        }
 }
 
-input::placeholder {
-      font-size: 0.9em;
-      padding: 1em;
-}
 
 
 .login__image_item{

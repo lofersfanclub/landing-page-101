@@ -77,62 +77,88 @@ body, html {
   padding: 2em;
   margin: 10em auto;
   text-align: center;
+  color: #3d3367;
+  font-size: 0.9em;
+}
+
+.loginmain .card__logo {
+  margin: 0.6em auto;
+  background-image: url("/rescources/images/logo@2x.png");
+  background-size: auto 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80%;
+  height: 50px;
 }
 
 .loginmain .card__title {
-  font-size: 2em;
+  margin-top: 0.6em;
+  font-size: 3em;
+  font-weight: 700;
+  color: #3d3367;
 }
 
 .loginmain .card__derc {
-  font-size: 0.8em;
   color: #8a8a8a;
 }
 
-.form {
-  margin-top: 1.4em;
+.loginmain .card .form {
+  margin-top: 1.8em;
 }
 
-.form input {
+.loginmain .card .form .input {
   line-height: normal;
   width: 80%;
-  height: 50px;
-  margin-top: 0.5em;
-  border-radius: 1.5em;
+  margin-top: 0.8em;
+  border-radius: 2em;
   border: none;
+  padding: 1.4em;
+  font-size: 0.9em;
 }
 
-.form .textfield {
+.loginmain .card .form .textfield {
   background-color: #f7f7f7;
 }
 
-.form__submit {
+.loginmain .card .form__submit {
   text-align: center;
-  font-weight: 500;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.form .button {
+.loginmain .card .form .button:hover {
+  background-color: #f7f7f7;
+  color: #3d3367;
+}
+
+.loginmain .card .form .button {
   background-color: #3d3367;
   color: #fff;
+  border: solid 1px #3d3367;
 }
 
-input::-webkit-input-placeholder {
-  font-size: 0.9em;
-  padding: 1em;
+.loginmain .card__sign_up {
+  font-weight: 500;
+  margin-top: 3em;
+  font-size: 0.8em;
+  font-weight: 700;
 }
 
-input:-ms-input-placeholder {
-  font-size: 0.9em;
-  padding: 1em;
+.loginmain .card__sign_up:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-input::-ms-input-placeholder {
-  font-size: 0.9em;
-  padding: 1em;
+.loginmain .card__forgot_password {
+  color: #8a8a8a;
+  margin-top: 0.8em;
+  font-size: 0.8em;
 }
 
-input::placeholder {
-  font-size: 0.9em;
-  padding: 1em;
+.loginmain .card__forgot_password:hover {
+  color: #3d3367;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .login__image_item {
